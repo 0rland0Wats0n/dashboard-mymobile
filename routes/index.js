@@ -14,12 +14,12 @@ var env = {
 
 /* GET home page. */
 router.get('/', function(req, res){
-    res.render('index', { env: env });
+    res.render('index', { env: env, title: 'Login' });
   }
 );
 
 router.get('/login', function(req, res) {
-  res.redirect('/');
+  res.redirect('/', { env: env, title: 'Login' });
 });
 
 router.get('/logout', function(req, res){
