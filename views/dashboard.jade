@@ -1,7 +1,31 @@
 extends layout
 
 block content
-  img(src="#{user.picture}")
-  h2 Welcome #{user.nickname}!
-  br
-  a(href='/logout') Logout
+  .container.logout-panel
+    .row
+      a(href='/logout' class="btn btn-primary pull-right") Logout
+  .container
+    .row
+      h2.page-header Images
+      .col-md-12
+        table.table.table-striped.table-bordered.table-hover
+          thead
+            tr(role="row")
+              th Name
+              th Description
+              th Uploaded On
+              th Format
+              th URL
+          tbody
+            each image in images.images
+              tr(role="row")
+                td= image.name
+                td= image.description
+                td= image.uploaded_on
+                td= image.image.format
+                td= image.image.url
+  .container
+    .row
+      h2.page-header Upload Image
+        form(role="form" method="post" action="/")
+          
