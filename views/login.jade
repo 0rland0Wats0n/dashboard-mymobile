@@ -10,7 +10,7 @@ block content
           redirectUrl: '#{env.AUTH0_CALLBACK_URL}'
         , responseType: 'code'
         , params: {
-          scope: 'openid name email picture'
+          scope: 'openid email'
         }
       }});
     lock.show();
