@@ -19,7 +19,7 @@ router.get('/', function(req, res){
 );
 
 router.get('/login', function(req, res) {
-  res.redirect('/', { env: env, title: 'Login' });
+  res.redirect('/');
 });
 
 router.get('/logout', function(req, res){
