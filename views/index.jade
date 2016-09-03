@@ -9,13 +9,14 @@ block content
     var lock = new Auth0Lock('#{env.AUTH0_CLIENT_ID}', '#{env.AUTH0_DOMAIN}', { auth: {
         redirectUrl: '#{env.AUTH0_CALLBACK_URL}',
         container: 'root',
-        closable: false,
-        allowSignUp: false, 
         responseType: 'code', 
         params: {
           scope: 'openid email'
         }
       }});
-    lock.show();
+    lock.show({
+      closable: false,
+      allowSignUp: false 
+    });
 
   
