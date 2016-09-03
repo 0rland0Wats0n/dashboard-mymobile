@@ -8,6 +8,7 @@ var session = require('express-session');
 var dotenv = require('dotenv');
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
+var multer = require('multer');
 
 dotenv.load();
 
@@ -58,6 +59,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var upload = multer({ dest: './uploads' });
+app.all('/*', upload.array('file'), function(req, res, cb) {
+  cb();
+});
 
 app.use('/', routes);
 app.use('/dashboard', dashboard);

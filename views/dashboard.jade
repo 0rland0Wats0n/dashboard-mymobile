@@ -27,5 +27,12 @@ block content
   .container
     .row
       h2.page-header Upload Image
-        form(role="form" method="post" action="/")
-          
+      form(role="form" method="post" action="/dashboard" enctype="multipart/form-data")
+        .form-group
+          label Description
+          input.form-control(type="text" name="description")
+        .form-group
+          label Image
+          input.form-control(type="file", name="file")
+        .form-group
+          button.btn.btn-primary(type="submit") Submit

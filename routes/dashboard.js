@@ -18,4 +18,11 @@ router.get('/', ensureLoggedIn, function(req, res, next) {
     })
 });
 
+router.post('/', ensureLoggedIn, function(req, res, next) {
+  axios.post(env.API_URL + '/api/v1/image?token=' + req.cookies.auth, {file: req.files, description: req.body.description})
+    .then(function(response) {
+      res.redirect('/dashboard');
+    });
+});
+
 module.exports = router;
