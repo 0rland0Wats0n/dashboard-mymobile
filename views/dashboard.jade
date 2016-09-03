@@ -16,18 +16,23 @@ block content
               th Uploaded On
               th Format
               th URL
+              th Remove?
           tbody
-            each image in images.images
+            each image in images
               tr(role="row")
                 td= image.name
                 td= image.description
                 td= image.uploaded_on
                 td= image.image.format
                 td= image.image.url
+                td
+                  form(method="post", action='/dashboard/delete')
+                    input(type="hidden", name="id", value= image._id)
+                    button.btn.btn-danger(type="submit") Del
   .container
     .row
       h2.page-header Upload Image
-      form(role="form" method="post" action="/dashboard" enctype="multipart/form-data")
+      form(role="form" method="post" action="/dashboard/upload" enctype="multipart/form-data")
         .form-group
           label Description
           input.form-control(type="text" name="description")

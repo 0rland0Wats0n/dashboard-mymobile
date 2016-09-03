@@ -9,6 +9,8 @@ var dotenv = require('dotenv');
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 var multer = require('multer');
+var cloudinary = require('cloudinary');
+var mongoose = require('mongoose');
 
 dotenv.load();
 
@@ -37,6 +39,22 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(user, done) {
   done(null, user);
+});
+
+var cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+
+var mongoose = require('mongoose');
+var db = process.env.MONGO || 'mongodb://localhost:27017/mymobile';
+mongoose.connect(db);
+
+// display connection message
+mongoose.connection.on('connected', function() {
+  console.log('Connected to ' + db);
 });
 
 var app = express();
